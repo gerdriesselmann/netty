@@ -87,6 +87,7 @@ public abstract class HttpContentDecoder extends SimpleChannelUpstreamHandler
                 } else {
                     m.headers().set(HttpHeaders.Names.CONTENT_ENCODING, targetContentEncoding);
                 }
+                m.headers().set(HttpHeaders.Names.X_CONTENT_ENCODING, contentEncoding);
 
                 if (!m.isChunked()) {
                     ChannelBuffer content = m.getContent();
