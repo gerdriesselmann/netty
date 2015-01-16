@@ -87,7 +87,6 @@ public abstract class HttpContentDecoder extends SimpleChannelUpstreamHandler
                 } else {
                     m.headers().set(HttpHeaders.Names.CONTENT_ENCODING, targetContentEncoding);
                 }
-                m.headers().set(HttpHeaders.Names.X_CONTENT_ENCODING, contentEncoding);
 
                 if (!m.isChunked()) {
                     ChannelBuffer content = m.getContent();
@@ -97,7 +96,9 @@ public abstract class HttpContentDecoder extends SimpleChannelUpstreamHandler
 
                     // Replace the content.
                     m.setContent(content);
-                    if (m.headers().contains(HttpHeaders.Names.CONTENT_LENGTH)) {
+                    if (!targetContentEncoding.equalsIgnoreCase(contentEncoding) &&
+                            m.headers().contains(HttpHeaders.Names.CONTENT_LENGTH)
+                    ) {
                         m.headers().set(
                                 HttpHeaders.Names.CONTENT_LENGTH,
                                 Integer.toString(content.readableBytes()));

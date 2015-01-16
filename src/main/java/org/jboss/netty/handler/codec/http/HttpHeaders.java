@@ -187,10 +187,6 @@ public abstract class HttpHeaders implements Iterable<Map.Entry<String, String>>
          */
         public static final String CONTENT_ENCODING = "Content-Encoding";
         /**
-         * {@code "X-Content-Encoding"}
-         */
-        public static final String X_CONTENT_ENCODING = "X-Original-Content-Encoding";
-        /**
          * {@code "Content-Language"}
          */
         public static final String CONTENT_LANGUAGE = "Content-Language";
